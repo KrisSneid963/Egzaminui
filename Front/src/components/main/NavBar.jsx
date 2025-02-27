@@ -20,8 +20,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-600 p-4 flex justify-between items-center">
-      <h1 className="text-white text-lg font-bold">Vilnius Tours</h1>
+    <nav className="bg-red-300 p-4 flex justify-between items-center">
+      <h1 className="text-white text-lg font-bold">Write header</h1>
       <div className="flex items-center space-x-4"> 
         {!isLoggedIn ? (
           <>

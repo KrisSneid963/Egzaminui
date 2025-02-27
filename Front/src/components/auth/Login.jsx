@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -11,50 +11,61 @@ const Login = () => {
         try {
             const response = await fetch("http://localhost:8080/api/auth/login", {
                 method: "GET",
-                headers: { "Content-Type": "application/json", 'Authorization': `Basic ${btoa(email + ":" + password)}` },
-                // body: JSON.stringify({ email, password })
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Basic ${btoa(email + ":" + password)}`
+                },
             });
-            
+
             if (!response.ok) throw new Error("Probably unauthorized/see console");
 
             const data = await response.json();
             localStorage.setItem("token", data.token);
             localStorage.setItem("userId", data.userId);
-            navigate("/my-bookings"); // Redirect to bookings
+            navigate("/my-bookings"); 
         } catch (error) {
-            alert(error.message);  ///local storage email ir password reiksmes 
+            alert(error.message); 
         }
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="bg-white p-6 shadow-md rounded-lg w-96">
-                <h2 className="text-center text-2xl font-bold">Login</h2>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+                <h2 className="text-2xl font-bold text-center text-neutral-800">Login</h2>
+
                 <form onSubmit={handleLogin} className="space-y-4">
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="w-full p-2 border rounded-md"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="w-full p-2 border rounded-md"
-                    />
-                    <button type="submit" className="w-full bg-green-500 text-white p-2 rounded-md">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Email</label>
+                        <input 
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
+                            required 
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Password</label>
+                        <input 
+                            type="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
+                            required 
+                        />
+                    </div>
+                    <button 
+                        type="submit"
+                        className="w-full px-4 py-2 font-medium text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-200"
+                    >
                         Login
                     </button>
                 </form>
+
                 <div className="mt-4 text-center">
-                    <Link to="/" className="text-red-600 hover:underline">
-                        Back to Home Page
-                    </Link>
+                    <p>Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a></p>
                 </div>
             </div>
         </div>
