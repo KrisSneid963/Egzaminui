@@ -21,7 +21,7 @@ public class User implements UserDetails {
     private String email;
     private String name;
     @Setter
-    private String password;
+    private String password; //hash
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",

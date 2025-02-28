@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-teal-400 p-4 flex justify-between items-center">
+    <nav className="bg-indigo-600 p-4 flex justify-between items-center">
       <h1 className="text-white text-lg font-bold">Welcome to Our Add Website</h1>
       <div className="flex items-center space-x-4"> 
         {!isLoggedIn ? (

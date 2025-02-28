@@ -66,7 +66,7 @@ const Registration = () => {
                         <input type="password" placeholder="Enter your password" {...register("password", { required: "Password is required", minLength: 6 })} className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200" />
                         {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>}
                     </div>
-                    <button type="submit" className="w-full px-4 py-2 font-medium text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-200" disabled={loading}>
+                    <button type="submit" className="w-full px-4 py-2 font-medium text-white bg-indigo-400 hover:bg-rose-600 focus:outline-none focus:ring focus:ring-green-200" disabled={loading}>
                         {loading ? "Registering..." : "Register"}
                     </button>
                     {errorMessage && <p className="mt-2 text-sm text-red-600">{errorMessage}</p>}
@@ -74,7 +74,7 @@ const Registration = () => {
                 </form>
 
                 <div className="mt-4 text-center">
-                    <p>Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a></p>
+                    <p>Already have an account? <a href="/login" className="text-red-600 hover:underline">Login</a></p>
                 </div>
             </div>
         </div>

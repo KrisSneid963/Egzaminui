@@ -52,17 +52,16 @@ public class SecurityConfig {
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler()))
                 .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers(HttpMethod.GET, "/api/ads/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/ads/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/token").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "api/register").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/tours/**").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/api/bookings/**").authenticated()
-//                        .requestMatchers(HttpMethod.GET, "/api/bookings/**").authenticated()
-//                        .requestMatchers(HttpMethod.POST, "/api/tours/**").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.PUT, "/api/tours/**").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.DELETE, "/api/tours/**").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.GET, "/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/register").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/ads/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/ads/approve/**").hasRole("ADMIN")
+
+
                         .anyRequest().authenticated());
         return http.build();
     }
