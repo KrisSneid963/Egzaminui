@@ -14,7 +14,7 @@ const App = () => {
       <Routes>
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Login />} />  {/* Redirect unknown routes to login */}
+          <Route path="*" element={<Login />} />  
         </Routes>
       <Footer />
     </BrowserRouter>

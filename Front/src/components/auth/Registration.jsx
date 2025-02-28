@@ -21,14 +21,14 @@ const Registration = () => {
                 body: JSON.stringify(data)
             });
     
-            // Handle different response formats
+      
             let result;
             const contentType = response.headers.get("content-type");
             
             if (contentType && contentType.includes("application/json")) {
-                result = await response.json(); // Parse JSON if backend sends JSON
+                result = await response.json();
             } else {
-                result = await response.text(); // Handle plain text response
+                result = await response.text(); 
             }
     
             if (!response.ok) throw new Error(result.message || result || "Registration failed");

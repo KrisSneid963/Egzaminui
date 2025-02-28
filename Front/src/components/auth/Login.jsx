@@ -17,7 +17,7 @@ const Login = () => {
                 },
             });
 
-            if (!response.ok) throw new Error("Probably unauthorized/see console");
+            if (!response.ok) throw new Error("You are Loged in successfully");
 
             const data = await response.json();
             localStorage.setItem("token", data.token);
@@ -58,7 +58,7 @@ const Login = () => {
                     </div>
                     <button 
                         type="submit"
-                        className="w-full px-4 py-2 font-medium text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-200"
+                        className="w-full px-4 py-2 font-medium text-white bg-teal-500 hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-200"
                     >
                         Login
                     </button>
